@@ -1,7 +1,8 @@
 # Required skills for all Fellowship agents
-# Install with: clawhub install <skill-name>
-
-email
+# ClawHub skills (install with: clawhub install <name>)
 temaki
 github
 weather
+
+# Custom skills (in skills/custom/, install manually)
+# email — see skills/custom/email/ (Python IMAP/SMTP client)
