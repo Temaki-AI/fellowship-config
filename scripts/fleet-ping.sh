@@ -173,7 +173,7 @@ process_commands() {
   # Wake OpenClaw to process commands
   if [ -n "$OPENCLAW_BIN" ] && [ -x "$OPENCLAW_BIN" ]; then
     log "Waking OpenClaw to process fleet commands"
-    $OPENCLAW_BIN wake "Fleet commands received. Check $COMMAND_FILE and process per fleet skill." 2>&1 | head -5 >> "$LOG_FILE"
+    $OPENCLAW_BIN system event --text "Fleet commands received. Check $COMMAND_FILE and process per fleet skill." --mode now 2>&1 | head -5 >> "$LOG_FILE"
   else
     log "WARNING: OpenClaw binary not found, cannot wake agent"
   fi
