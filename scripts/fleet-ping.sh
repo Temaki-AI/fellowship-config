@@ -87,8 +87,17 @@ collect_stats() {
     fi
     uptime_hours=$(echo "scale=2; $uptime_seconds / 3600" | bc -l 2>/dev/null || echo 0)
     
-    # Count active sessions (rough estimate from openclaw status)
-    sessions_active=$($OPENCLAW_BIN status 2>/dev/null | grep -c "session" || echo 0)
+    # Get session stats from openclaw
+    if command -v jq &> /dev/null; then
+      session_data=$($OPENCLAW_BIN sessions --json 2>/dev/null || echo '{"count":0,"sessions":[]}')
+      sessions_active=$(echo "$session_data" | jq -r '.count // 0')
+      session_tokens=$(echo "$session_data" | jq -r '[.sessions[].totalTokens // 0] | add // 0')
+      session_context=$(echo "$session_data" | jq -r '[.sessions[].contextTokens // 0] | max // 0')
+    else
+      sessions_active=$($OPENCLAW_BIN status 2>/dev/null | grep -c "session" || echo 0)
+      session_tokens=0
+      session_context=0
+    fi
     
     # Last activity (use current time for now — could parse logs later)
     last_activity=$(date -Iseconds)
@@ -107,6 +116,8 @@ collect_stats() {
   "uptime_hours": $uptime_hours,
   "memory_mb": $memory_mb,
   "sessions_active": $sessions_active,
+  "session_tokens": $session_tokens,
+  "session_context": $session_context,
   "last_activity": "$last_activity",
   "os": "$os_type",
   "node_version": "$node_version"
