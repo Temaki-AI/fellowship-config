@@ -1,0 +1,14 @@
+# Never commit credentials
+.credentials/
+*.key
+*.pem
+*.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~

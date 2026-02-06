@@ -1,0 +1,40 @@
+# TOOLS.md - Local Notes
+
+> Environment-specific details: device names, credentials references, tool quirks.
+> Skills define *how* tools work. This file is for *your* specifics.
+
+## Host
+- **Machine:** [HOSTNAME] — [DESCRIPTION]
+- **CPU:** [CPU INFO]
+- **Disk:** [DISK INFO]
+- **Network:** [NETWORK INFO]
+- **Node:** [NODE VERSION]
+- **Python:** [PYTHON VERSION]
+- **Docker:** [DOCKER STATUS]
+- **OpenClaw:** [VERSION], systemd/launchd service
+
+## TTS
+- **Provider:** Edge TTS (free, no API key)
+- **Voice:** [CONFIGURED VOICE]
+- **Config:** `messages.tts` in openclaw.json
+
+## STT / Audio Transcription
+- **Method:** Groq Whisper API via curl (free tier)
+- **API Key:** stored in `.credentials/groq.json`
+- **Model:** whisper-large-v3
+- **Default language:** [LANGUAGE CODE]
+
+## Devices & Cameras
+- *(Discover and note here)*
+
+## GitHub
+- **Account:** [GITHUB USERNAME]
+- **CLI:** gh [VERSION] at [PATH]
+- **Auth:** [AUTH METHOD]
+- **Credentials:** .credentials/github.json (gitignored)
+
+## SSH
+- *(Note any SSH configs here)*
+
+---
+*Updated: [DATE]*

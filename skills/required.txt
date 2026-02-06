@@ -1,0 +1,7 @@
+# Required skills for all Fellowship agents
+# Install with: clawhub install <skill-name>
+
+email
+temaki
+github
+weather
